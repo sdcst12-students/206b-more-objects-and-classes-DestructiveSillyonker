@@ -27,6 +27,7 @@ class quadratic:
             root1 = (-self.b + math.sqrt(d)) / (2 * self.a)
             root2 = (-self.b - math.sqrt(d)) / (2 * self.a)
             self.roots = sorted([round(root1, 2), round(root2, 2)])
+        return self.roots
 
     def axisOfSymmetry(self):
         # Calculate the x-coordinate of the axis of symmetry
@@ -38,37 +39,79 @@ class quadratic:
         y = self.a * x**2 + self.b * x + self.c
         return [round(x, 2), round(y, 2)]
 
+class TextColor:
+    RED = '\033[91m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    BLUE = '\033[94m'
+    RESET = '\033[0m'
+
 if __name__ == "__main__":
+    print("\033[94mQuadratic Equation Solver: ax^2 + bx + c = 0\033[0m")
+
     q1 = quadratic(1, 4, 4)
-    q1.calcRoots()
     assert q1.isFactorable() == True
     assert q1.hasRealRoots() == True
     assert q1.discriminant() == 0
-    assert q1.roots == [-2, -2]
+    assert q1.calcRoots() == [-2, -2]
     assert q1.axisOfSymmetry() == -2
     assert q1.vertex() == [-2, 0]
 
     q2 = quadratic(1, 1, -6)
-    q2.calcRoots()
     assert q2.isFactorable() == True
     assert q2.hasRealRoots() == True
     assert q2.discriminant() == 25
-    assert q2.roots == [-3, 2]
+    assert q2.calcRoots() == [-3, 2]
     assert q2.axisOfSymmetry() == -0.5
     assert q2.vertex() == [-0.5, -6.25]
 
     q3 = quadratic(1, 1, 10)
-    q3.calcRoots()
     assert q3.isFactorable() == False
     assert q3.hasRealRoots() == False
     assert q3.discriminant() == -39
-    assert q3.roots == []
+    assert q3.calcRoots() == []
     assert q3.axisOfSymmetry() == -0.5
 
     q4 = quadratic(1, 10, 1)
-    q4.calcRoots()
     assert q4.isFactorable() == False
     assert q4.hasRealRoots() == True
     assert q4.discriminant() == 96
-    assert q4.roots == [-9.9, -0.1]
-    assert q4.axisOfSymmetry() == -5.0
+    assert q4.calcRoots() == [-9.9, -0.1]
+    assert q4.axisOfSymmetry() == -5
+
+
+    q1 = quadratic(1, 4, 4)
+    print("q1:")
+    print(f"  isFactorable(): {q1.isFactorable() == True}")
+    print(f"  hasRealRoots(): {q1.hasRealRoots() == True}")
+    print(f"  discriminant(): {q1.discriminant() == 0}")
+    print(f"  calcRoots(): {q1.calcRoots() == [-2, -2]}")
+    print(f"  axisOfSymmetry(): {q1.axisOfSymmetry() == -2}")
+    print(f"  vertex(): {q1.vertex() == [-2, 0]}")
+
+    q2 = quadratic(1, 1, -6)
+    print("\nq2:")
+    print(f"  isFactorable(): {q2.isFactorable() == True}")
+    print(f"  hasRealRoots(): {q2.hasRealRoots() == True}")
+    print(f"  discriminant(): {q2.discriminant() == 25}")
+    print(f"  calcRoots(): {q2.calcRoots() == [-3, 2]}")
+    print(f"  axisOfSymmetry(): {q2.axisOfSymmetry() == -0.5}")
+    print(f"  vertex(): {q2.vertex() == [-0.5, -6.25]}")
+
+    q3 = quadratic(1, 1, 10)
+    print("\nq3:")
+    print(f"  isFactorable(): {q3.isFactorable() == False}")
+    print(f"  hasRealRoots(): {q3.hasRealRoots() == False}")
+    print(f"  discriminant(): {q3.discriminant() == -39}")
+    print(f"  calcRoots(): {q3.calcRoots() == []}")
+    print(f"  axisOfSymmetry(): {q3.axisOfSymmetry() == -0.5}")
+
+    q4 = quadratic(1, 10, 1)
+    print("\nq4:")
+    print(f"  isFactorable(): {q4.isFactorable() == False}")
+    print(f"  hasRealRoots(): {q4.hasRealRoots() == True}")
+    print(f"  discriminant(): {q4.discriminant() == 96}")
+    print(f"  calcRoots(): {q4.calcRoots() == [-9.9, -0.1]}")
+    print(f"  axisOfSymmetry(): {q4.axisOfSymmetry() == -5}")
+
+    print("\nAssertions checked successfully.")
